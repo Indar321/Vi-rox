@@ -1,0 +1,1071 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>VIROX — Built Different</title>
+<meta name="description" content="Independent Indian streetwear. Limited drops, print-on-demand, built different." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0b0c0a;
+    --ink-2:#131410;
+    --bone:#f3f3ee;
+    --ash:#8c8c82;
+    --acid:#c6ff3d;
+    --rust:#ff4b1f;
+    --line:#2b2b26;
+    --radius:0;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--bone);
+    font-family:'Archivo', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    min-height:100vh;
+  }
+  ::selection{background:var(--acid); color:var(--ink);}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit;}
+  img{max-width:100%; display:block;}
+  .h-display{
+    font-family:'Bebas Neue', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    line-height:0.92;
+  }
+  .mono{font-family:'JetBrains Mono', monospace;}
+  .wrap{max-width:1280px; margin:0 auto; padding:0 24px;}
+  :focus-visible{outline:2px solid var(--acid); outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; transition-duration:0.01ms !important;}
+  }
+
+  /* ===== Announcement / drop bar ===== */
+  .announce{
+    background:var(--acid); color:var(--ink);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px; font-weight:700; letter-spacing:0.06em;
+    padding:8px 0; overflow:hidden; white-space:nowrap;
+    text-transform:uppercase;
+  }
+  .announce__track{
+    display:inline-block; padding-left:100%;
+    animation:marquee 22s linear infinite;
+  }
+  .announce__track span{margin-right:48px;}
+  @keyframes marquee{ from{transform:translateX(0);} to{transform:translateX(-100%);} }
+
+  /* ===== Header ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(11,12,10,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 24px; gap:24px;
+  }
+  .logo{
+    font-family:'Bebas Neue', sans-serif;
+    font-size:28px; letter-spacing:0.06em;
+    position:relative; display:inline-block;
+  }
+  .logo::after{
+    content:"";
+    position:absolute; left:-4px; right:-4px; bottom:-3px; height:5px;
+    background:var(--acid);
+    transform:skewX(-12deg);
+    z-index:-1;
+  }
+  .navlinks{display:flex; gap:32px; font-size:13px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;}
+  .navlinks a{position:relative; padding-bottom:4px; opacity:.85; transition:opacity .15s;}
+  .navlinks a:hover, .navlinks a.active{opacity:1;}
+  .navlinks a.active::after{
+    content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--acid);
+  }
+  .navlinks{display:none;}
+  @media(min-width:900px){ .navlinks{display:flex;} }
+  .navicons{display:flex; align-items:center; gap:18px;}
+  .navicons button{position:relative; width:22px; height:22px; display:flex; align-items:center; justify-content:center;}
+  .badge{
+    position:absolute; top:-6px; right:-8px;
+    background:var(--acid); color:var(--ink);
+    font-family:'JetBrains Mono'; font-size:10px; font-weight:700;
+    width:16px; height:16px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .menu-btn{display:flex;}
+  @media(min-width:900px){ .menu-btn{display:none;} }
+
+  /* mobile drawer */
+  .drawer{
+    position:fixed; inset:0; background:var(--ink); z-index:100;
+    transform:translateX(100%); transition:transform .3s ease;
+    padding:24px; overflow-y:auto;
+  }
+  .drawer.open{transform:translateX(0);}
+  .drawer .navlinks{display:flex; flex-direction:column; gap:0; font-size:22px; font-family:'Bebas Neue'; letter-spacing:.05em; margin-top:48px;}
+  .drawer .navlinks a{padding:16px 0; border-bottom:1px solid var(--line);}
+  .drawer-close{position:absolute; top:24px; right:24px; font-size:28px; font-family:'Bebas Neue';}
+
+  /* ===== Buttons ===== */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:14px 28px;
+    font-family:'JetBrains Mono'; font-size:12px; font-weight:700;
+    letter-spacing:0.08em; text-transform:uppercase;
+    border:1px solid var(--bone);
+    transition:transform .15s ease, background .15s ease, color .15s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--acid); border-color:var(--acid); color:var(--ink);}
+  .btn-primary:hover{transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--bone);}
+  .btn-outline{background:transparent; color:var(--bone);}
+  .btn-outline:hover{transform:translate(-2px,-2px); box-shadow:4px 4px 0 var(--acid); border-color:var(--acid); color:var(--acid);}
+  .btn-block{width:100%;}
+  .btn:disabled{opacity:.4; cursor:not-allowed; transform:none !important; box-shadow:none !important;}
+
+  /* ===== Hero ===== */
+  .hero{
+    display:grid; grid-template-columns:1fr; position:relative; overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  @media(min-width:960px){ .hero{grid-template-columns:1fr 1fr;} }
+  .hero__copy{
+    padding:64px 24px; display:flex; flex-direction:column; justify-content:center; gap:20px;
+    position:relative; z-index:2;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono'; font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--acid); display:flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:8px; height:8px; background:var(--acid); display:inline-block;}
+  .hero h1{font-size:clamp(42px,7vw,84px);}
+  .hero h1 .accent{color:var(--acid);}
+  .hero p{color:var(--ash); font-size:16px; max-width:38ch; line-height:1.5;}
+  .hero__cta{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
+  .hero__img{
+    position:relative; min-height:340px;
+    background:linear-gradient(180deg,#1a1c15,#0b0c0a);
+    display:flex; align-items:flex-end; justify-content:center;
+    border-left:1px solid var(--line);
+  }
+  .hero__img svg{width:100%; height:auto; max-height:520px;}
+
+  /* drop countdown — signature element */
+  .dropbar{
+    border-bottom:1px solid var(--line);
+    background:var(--ink-2);
+  }
+  .dropbar__inner{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:24px;
+    padding:16px 24px; text-align:center;
+  }
+  .dropbar__label{font-family:'JetBrains Mono'; font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--ash);}
+  .dropbar__timer{display:flex; gap:10px;}
+  .dropbar__unit{font-family:'JetBrains Mono'; font-size:20px; font-weight:700; color:var(--acid); min-width:2.4ch; text-align:center;}
+  .dropbar__unit small{display:block; font-size:9px; color:var(--ash); font-weight:400; letter-spacing:.08em;}
+
+  /* ===== Trust strip ===== */
+  .trust{border-bottom:1px solid var(--line); background:var(--ink-2);}
+  .trust__grid{display:grid; grid-template-columns:repeat(2,1fr); gap:20px; padding:28px 24px;}
+  @media(min-width:760px){ .trust__grid{grid-template-columns:repeat(4,1fr);} }
+  .trust__item{display:flex; align-items:center; gap:12px; font-size:13px;}
+  .trust__item strong{display:block; font-size:13px;}
+  .trust__item span{color:var(--ash); font-size:12px;}
+  .trust__icon{width:28px; height:28px; flex:none; color:var(--acid);}
+
+  /* ===== Section heading ===== */
+  .section{padding:64px 0;}
+  .section__head{
+    display:flex; align-items:flex-end; justify-content:space-between; margin-bottom:32px; gap:16px; flex-wrap:wrap;
+  }
+  .section__title{font-size:clamp(26px,3.4vw,38px);}
+  .section__link{font-family:'JetBrains Mono'; font-size:12px; letter-spacing:.08em; text-transform:uppercase; border-bottom:1px solid var(--bone); padding-bottom:2px;}
+
+  /* ===== Category grid ===== */
+  .cat-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:2px; background:var(--line);}
+  @media(min-width:700px){ .cat-grid{grid-template-columns:repeat(4,1fr);} }
+  .cat-card{
+    position:relative; aspect-ratio:3/4; background:var(--ink-2); overflow:hidden;
+    display:flex; align-items:flex-end; padding:18px;
+  }
+  .cat-card svg{position:absolute; inset:0; width:100%; height:100%; opacity:.55; transition:transform .4s ease, opacity .3s ease;}
+  .cat-card:hover svg{transform:scale(1.06); opacity:.75;}
+  .cat-card__label{position:relative; z-index:2;}
+  .cat-card__label .h-display{font-size:22px;}
+  .cat-card__label span{font-family:'JetBrains Mono'; font-size:11px; color:var(--acid); text-transform:uppercase; letter-spacing:.06em;}
+
+  /* ===== Product grid ===== */
+  .prod-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--line);}
+  @media(min-width:700px){ .prod-grid{grid-template-columns:repeat(3,1fr);} }
+  @media(min-width:1080px){ .prod-grid{grid-template-columns:repeat(6,1fr);} }
+  .card{background:var(--ink); padding:14px; display:flex; flex-direction:column; gap:8px; position:relative;}
+  .card__img{aspect-ratio:1; background:var(--ink-2); position:relative; overflow:hidden;}
+  .card__img svg{width:100%; height:100%;}
+  .card__wish{
+    position:absolute; top:10px; right:10px; z-index:3;
+    width:30px; height:30px; background:rgba(11,12,10,.7); display:flex; align-items:center; justify-content:center;
+  }
+  .card__wish svg{width:16px; height:16px; stroke:var(--bone); fill:none; transition:fill .15s, stroke .15s;}
+  .card__wish.active svg{fill:var(--acid); stroke:var(--acid);}
+  .card__tag{
+    position:absolute; top:10px; left:10px; z-index:3;
+    background:var(--acid); color:var(--ink); font-family:'JetBrains Mono'; font-size:10px; font-weight:700;
+    padding:3px 8px; text-transform:uppercase; letter-spacing:.04em;
+  }
+  .card__name{font-size:13px; font-weight:600;}
+  .card__meta{display:flex; align-items:center; justify-content:space-between;}
+  .card__price{font-family:'JetBrains Mono'; font-size:13px;}
+  .card__price del{color:var(--ash); font-weight:400; margin-right:6px;}
+  .card__sku{font-family:'JetBrains Mono'; font-size:10px; color:var(--ash); letter-spacing:.05em;}
+  .card a.card__link{position:absolute; inset:0; z-index:1;}
+  .card__add{
+    margin-top:2px; font-family:'JetBrains Mono'; font-size:11px; letter-spacing:.05em; text-transform:uppercase;
+    border:1px solid var(--line); padding:8px; text-align:center; position:relative; z-index:3;
+    transition:background .15s, border-color .15s;
+  }
+  .card__add:hover{background:var(--acid); border-color:var(--acid); color:var(--ink);}
+
+  /* ===== Promo banners ===== */
+  .promo-grid{display:grid; grid-template-columns:1fr; gap:2px; background:var(--line);}
+  @media(min-width:820px){ .promo-grid{grid-template-columns:1fr 1fr;} }
+  .promo{
+    background:var(--ink-2); padding:40px; min-height:220px;
+    display:flex; flex-direction:column; justify-content:center; gap:14px; position:relative; overflow:hidden;
+  }
+  .promo--accent{background:var(--acid); color:var(--ink);}
+  .promo__label{font-family:'JetBrains Mono'; font-size:11px; letter-spacing:.1em; text-transform:uppercase; opacity:.8;}
+  .promo h3{font-size:clamp(24px,3vw,34px);}
+  .promo--accent .btn-outline{border-color:var(--ink); color:var(--ink);}
+  .promo--accent .btn-outline:hover{box-shadow:4px 4px 0 var(--ink); color:var(--ink);}
+
+  /* ===== Newsletter ===== */
+  .newsletter{border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .newsletter__inner{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; padding:28px 24px;
+  }
+  .newsletter__copy strong{display:block; font-family:'Bebas Neue'; font-size:20px; letter-spacing:.04em;}
+  .newsletter__copy span{color:var(--ash); font-size:13px;}
+  .newsletter form{display:flex; gap:0; flex:1; max-width:420px; min-width:260px;}
+  .newsletter input{
+    flex:1; background:transparent; border:1px solid var(--line); border-right:none;
+    padding:12px 14px; color:var(--bone); font-family:'Archivo'; font-size:13px;
+  }
+  .newsletter input:focus-visible{outline-offset:-2px;}
+  .newsletter button{background:var(--acid); color:var(--ink); padding:0 20px; font-family:'JetBrains Mono'; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;}
+
+  /* ===== Footer ===== */
+  footer{padding:48px 0 24px;}
+  .foot-grid{display:grid; grid-template-columns:1fr; gap:32px;}
+  @media(min-width:760px){ .foot-grid{grid-template-columns:1.4fr repeat(3,1fr);} }
+  .foot-brand .logo{font-size:26px;}
+  .foot-brand p{color:var(--ash); font-size:13px; margin-top:12px; max-width:32ch;}
+  .foot-col h4{font-family:'JetBrains Mono'; font-size:12px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:14px; color:var(--ash);}
+  .foot-col ul li{margin-bottom:10px; font-size:13px;}
+  .foot-col ul li a:hover{color:var(--acid);}
+  .foot-bottom{
+    margin-top:40px; padding-top:20px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px;
+    font-size:12px; color:var(--ash);
+  }
+
+  /* ===== Cart / Wishlist drawer ===== */
+  .side-drawer{
+    position:fixed; top:0; right:0; height:100%; width:100%; max-width:420px;
+    background:var(--ink); border-left:1px solid var(--line); z-index:200;
+    transform:translateX(100%); transition:transform .3s ease;
+    display:flex; flex-direction:column;
+  }
+  .side-drawer.open{transform:translateX(0);}
+  .side-drawer__head{display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--line);}
+  .side-drawer__head h3{font-family:'Bebas Neue'; font-size:22px; letter-spacing:.04em;}
+  .side-drawer__body{flex:1; overflow-y:auto; padding:20px 24px; display:flex; flex-direction:column; gap:18px;}
+  .line-item{display:flex; gap:14px;}
+  .line-item__img{width:64px; height:64px; background:var(--ink-2); flex:none;}
+  .line-item__info{flex:1; display:flex; flex-direction:column; gap:4px;}
+  .line-item__info .name{font-size:13px; font-weight:600;}
+  .line-item__info .size{font-family:'JetBrains Mono'; font-size:11px; color:var(--ash);}
+  .qty-row{display:flex; align-items:center; gap:10px; margin-top:4px;}
+  .qty-row button{border:1px solid var(--line); width:22px; height:22px; font-size:14px; display:flex; align-items:center; justify-content:center;}
+  .qty-row span{font-family:'JetBrains Mono'; font-size:12px; min-width:16px; text-align:center;}
+  .line-item__remove{font-family:'JetBrains Mono'; font-size:11px; color:var(--ash); text-decoration:underline; align-self:flex-start;}
+  .side-drawer__foot{border-top:1px solid var(--line); padding:20px 24px; display:flex; flex-direction:column; gap:14px;}
+  .subtotal-row{display:flex; justify-content:space-between; font-family:'JetBrains Mono'; font-size:14px;}
+  .empty-state{color:var(--ash); font-size:13px; text-align:center; padding:48px 0;}
+  .scrim{position:fixed; inset:0; background:rgba(0,0,0,.6); z-index:150; opacity:0; pointer-events:none; transition:opacity .25s ease;}
+  .scrim.show{opacity:1; pointer-events:auto;}
+
+  /* ===== Toast ===== */
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--acid); color:var(--ink); font-family:'JetBrains Mono'; font-size:12px; font-weight:700;
+    padding:12px 22px; letter-spacing:.05em; text-transform:uppercase; z-index:300;
+    opacity:0; transition:opacity .25s ease, transform .25s ease;
+  }
+  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+  /* ===== Generic page (shop/product/cart routes) ===== */
+  .page{padding:40px 0 80px;}
+  .breadcrumb{font-family:'JetBrains Mono'; font-size:11px; color:var(--ash); text-transform:uppercase; letter-spacing:.06em; margin-bottom:20px;}
+  .filters{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:32px;}
+  .chip{
+    font-family:'JetBrains Mono'; font-size:11px; text-transform:uppercase; letter-spacing:.05em;
+    border:1px solid var(--line); padding:8px 14px;
+  }
+  .chip.active{background:var(--acid); border-color:var(--acid); color:var(--ink);}
+  .pdp{display:grid; grid-template-columns:1fr; gap:40px;}
+  @media(min-width:900px){ .pdp{grid-template-columns:1.1fr 1fr;} }
+  .pdp__gallery{aspect-ratio:1; background:var(--ink-2); border:1px solid var(--line);}
+  .pdp__gallery svg{width:100%; height:100%;}
+  .size-grid{display:flex; gap:10px; flex-wrap:wrap; margin:18px 0;}
+  .size-box{
+    width:48px; height:44px; border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    font-family:'JetBrains Mono'; font-size:12px;
+  }
+  .size-box.active{border-color:var(--acid); color:var(--acid);}
+  .size-box:disabled{opacity:.3; text-decoration:line-through;}
+  .empty-page{text-align:center; padding:100px 24px; color:var(--ash);}
+</style>
+</head>
+<body>
+
+<div id="app"></div>
+<div class="scrim" id="scrim"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+/* ============================================================
+   VIROX — single-file storefront SPA
+   Hash routing · localStorage cart/wishlist · live backend API
+   Swap API_BASE to your deployed backend (Render/Express+Supabase)
+   ============================================================ */
+const API_BASE = window.VIROX_API_BASE || "http://localhost:4000";
+
+/* ---------- demo catalog (used only if the API is unreachable) ---------- */
+const DEMO_PRODUCTS = [
+  {id:"p1", slug:"chaos-oversized-tee", name:"Chaos Oversized Tee — Black", category:"streetwear", price:1499, compare_at_price:null, is_new:true, sku:"VX-ST-001", art:"skull"},
+  {id:"p2", slug:"stand-out-oversized-tee", name:"Stand Out Oversized Tee — Sand", category:"typography", price:1399, compare_at_price:null, is_new:true, sku:"VX-TY-002", art:"type"},
+  {id:"p3", slug:"ronin-oversized-tee", name:"Ronin Oversized Tee — Black", category:"anime", price:1599, compare_at_price:1799, is_new:false, sku:"VX-AN-003", art:"anime"},
+  {id:"p4", slug:"static-oversized-tee", name:"Static Oversized Tee — Charcoal", category:"streetwear", price:1499, compare_at_price:null, is_new:false, sku:"VX-ST-004", art:"skull"},
+  {id:"p5", slug:"lowercase-oversized-tee", name:"Lowercase Oversized Tee — Olive", category:"typography", price:1399, compare_at_price:null, is_new:true, sku:"VX-TY-005", art:"type"},
+  {id:"p6", slug:"first-drop-oversized-tee", name:"First Drop Oversized Tee — Bone", category:"newdrop", price:1699, compare_at_price:null, is_new:true, sku:"VX-ND-006", art:"tee"},
+];
+const CATEGORIES = [
+  {key:"streetwear", label:"Streetwear", art:"skull"},
+  {key:"typography", label:"Typography", art:"type"},
+  {key:"newdrop", label:"New Drop", art:"tee"},
+  {key:"anime", label:"Anime", art:"anime"},
+];
+
+/* ---------- state ---------- */
+const state = {
+  products: [],
+  loaded: false,
+  cart: JSON.parse(localStorage.getItem("vx_cart") || "[]"),
+  wishlist: JSON.parse(localStorage.getItem("vx_wishlist") || "[]"),
+};
+function saveCart(){ localStorage.setItem("vx_cart", JSON.stringify(state.cart)); renderCartCount(); }
+function saveWishlist(){ localStorage.setItem("vx_wishlist", JSON.stringify(state.wishlist)); renderWishCount(); }
+
+function addToCart(product, size="M", qty=1){
+  const key = product.id + "_" + size;
+  const existing = state.cart.find(i => i.key === key);
+  if(existing){ existing.qty += qty; }
+  else {
+    state.cart.push({
+      key, id:product.id, variant_id: product.variant_id || product.id,
+      name:product.name, price:product.price, size, qty, art:product.art
+    });
+  }
+  saveCart();
+  showToast(`${product.name} added to cart`);
+}
+function updateQty(key, delta){
+  const item = state.cart.find(i=>i.key===key);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty <= 0) state.cart = state.cart.filter(i=>i.key!==key);
+  saveCart();
+  renderCartDrawer();
+}
+function removeFromCart(key){
+  state.cart = state.cart.filter(i=>i.key!==key);
+  saveCart();
+  renderCartDrawer();
+}
+function toggleWishlist(product){
+  const idx = state.wishlist.findIndex(i=>i.id===product.id);
+  if(idx>-1){ state.wishlist.splice(idx,1); showToast("Removed from wishlist"); }
+  else { state.wishlist.push(product); showToast("Added to wishlist"); }
+  saveWishlist();
+  render(); // re-render to flip heart states
+}
+function isWishlisted(id){ return state.wishlist.some(i=>i.id===id); }
+function cartTotal(){ return state.cart.reduce((s,i)=>s+i.price*i.qty,0); }
+function cartCount(){ return state.cart.reduce((s,i)=>s+i.qty,0); }
+
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=>t.classList.remove("show"), 2200);
+}
+
+/* ---------- API ---------- */
+async function fetchProducts(){
+  try{
+    const res = await fetch(`${API_BASE}/api/products`);
+    if(!res.ok) throw new Error("bad response");
+    const data = await res.json();
+    state.products = data.map(p=>({...p, art: p.art || "tee"}));
+  }catch(e){
+    console.warn("Backend unreachable, using demo catalog:", e.message);
+    state.products = DEMO_PRODUCTS;
+  }
+  state.loaded = true;
+}
+
+async function submitCheckout(customer, shipping){
+  const items = state.cart.map(i=>({variant_id:i.variant_id, quantity:i.qty}));
+  const res = await fetch(`${API_BASE}/api/checkout/create-order`, {
+    method:"POST", headers:{"Content-Type":"application/json"},
+    body: JSON.stringify({items, customer, shipping})
+  });
+  if(!res.ok){ const err = await res.json().catch(()=>({})); throw new Error(err.error || "Checkout failed"); }
+  return res.json();
+}
+
+/* ---------- tiny SVG art library (placeholder product art) ---------- */
+function svgArt(kind, opts={}){
+  const stroke = opts.stroke || "#c6ff3d";
+  const bg = opts.bg || "#131410";
+  const common = `viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"`;
+  const wrap = (inner) => `<svg ${common} preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="${bg}"/>${inner}</svg>`;
+  switch(kind){
+    case "skull": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><circle cx="100" cy="90" r="42"/><circle cx="84" cy="86" r="8"/><circle cx="116" cy="86" r="8"/><path d="M78 118 L88 132 L100 118 L112 132 L122 118"/><path d="M100 48 L100 20 M70 60 L52 40 M130 60 L148 40"/></g>`);
+    case "hood": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M60 150 L60 90 Q100 40 140 90 L140 150"/><path d="M75 95 Q100 75 125 95"/><line x1="70" y1="150" x2="70" y2="175"/><line x1="130" y1="150" x2="130" y2="175"/></g>`);
+    case "cargo": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M75 30 L70 170 L95 170 L100 100 L105 170 L130 170 L125 30 Z"/><rect x="60" y="90" width="20" height="26"/><rect x="120" y="90" width="20" height="26"/></g>`);
+    case "tee": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M70 45 L45 60 L58 82 L70 72 L70 165 L130 165 L130 72 L142 82 L155 60 L130 45 Q115 60 100 60 Q85 60 70 45 Z"/></g>`);
+    case "type": return wrap(`<g><path d="M70 45 L45 60 L58 82 L70 72 L70 165 L130 165 L130 72 L142 82 L155 60 L130 45 Q115 60 100 60 Q85 60 70 45 Z" fill="none" stroke="${stroke}" stroke-width="3"/><text x="100" y="120" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="22" fill="${stroke}" letter-spacing="1">STAND</text><text x="100" y="140" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="22" fill="${stroke}" letter-spacing="1">OUT</text></g>`);
+    case "anime": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M70 45 L45 60 L58 82 L70 72 L70 165 L130 165 L130 72 L142 82 L155 60 L130 45 Q115 60 100 60 Q85 60 70 45 Z"/><path d="M85 95 L100 75 L115 95" /><circle cx="90" cy="112" r="4" fill="${stroke}" stroke="none"/><circle cx="110" cy="112" r="4" fill="${stroke}" stroke="none"/><path d="M88 130 Q100 140 112 130"/></g>`);
+    case "cap": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M55 110 Q100 65 145 110 Q145 130 100 132 Q55 130 55 110 Z"/><path d="M55 112 L20 122 Q50 132 60 118"/></g>`);
+    case "jacket": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M65 45 L45 65 L58 90 L65 82 L65 170 L100 170 L100 45 Z"/><path d="M135 45 L155 65 L142 90 L135 82 L135 170 L100 170 L100 45 Z"/><line x1="100" y1="45" x2="100" y2="170"/></g>`);
+    default: return wrap(`<circle cx="100" cy="100" r="40" fill="none" stroke="${stroke}" stroke-width="3"/>`);
+  }
+}
+function heroFigureSVG(){
+  return `<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+    <rect width="400" height="500" fill="#0b0c0a"/>
+    <g opacity="0.9">
+      <rect x="60" y="60" width="280" height="380" fill="#161711" />
+      <g fill="none" stroke="#c6ff3d" stroke-width="4">
+        <circle cx="200" cy="150" r="46"/>
+        <path d="M140 300 Q200 260 260 300 L260 420 L140 420 Z"/>
+        <path d="M140 300 L100 340 M260 300 L300 340"/>
+      </g>
+      <text x="200" y="470" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="26" fill="#f3f3ee" letter-spacing="4">VIROX</text>
+    </g>
+  </svg>`;
+}
+
+/* ---------- drop countdown (signature functional element) ---------- */
+function nextDropDate(){
+  const d = new Date();
+  const day = d.getDay(); // 0 Sun ... 6 Sat
+  const daysUntilSun = (7 - day) % 7 || 7;
+  const target = new Date(d);
+  target.setDate(d.getDate() + daysUntilSun);
+  target.setHours(20,0,0,0);
+  if(target <= d) target.setDate(target.getDate()+7);
+  return target;
+}
+let dropInterval;
+function startDropCountdown(){
+  clearInterval(dropInterval);
+  const target = nextDropDate();
+  const tick = () => {
+    const el = document.getElementById("dropTimer");
+    if(!el) { clearInterval(dropInterval); return; }
+    const diff = target - new Date();
+    const d = Math.max(0, Math.floor(diff/86400000));
+    const h = Math.max(0, Math.floor((diff%86400000)/3600000));
+    const m = Math.max(0, Math.floor((diff%3600000)/60000));
+    const s = Math.max(0, Math.floor((diff%60000)/1000));
+    el.innerHTML = `
+      <div class="dropbar__unit">${String(d).padStart(2,"0")}<small>days</small></div>
+      <div class="dropbar__unit">${String(h).padStart(2,"0")}<small>hrs</small></div>
+      <div class="dropbar__unit">${String(m).padStart(2,"0")}<small>min</small></div>
+      <div class="dropbar__unit">${String(s).padStart(2,"0")}<small>sec</small></div>
+    `;
+  };
+  tick();
+  dropInterval = setInterval(tick, 1000);
+}
+
+/* ---------- routing ---------- */
+function getRoute(){
+  const hash = location.hash.slice(1) || "/";
+  const [path, query] = hash.split("?");
+  const params = new URLSearchParams(query || "");
+  return {path, params};
+}
+window.addEventListener("hashchange", render);
+
+/* ---------- render helpers ---------- */
+function productCard(p){
+  const wished = isWishlisted(p.id);
+  const discount = p.compare_at_price ? Math.round((1 - p.price/p.compare_at_price)*100) : null;
+  return `
+  <div class="card">
+    <a class="card__link" href="#/product/${p.slug}" aria-label="${p.name}"></a>
+    <div class="card__img">
+      ${p.is_new ? `<span class="card__tag">New</span>` : (discount ? `<span class="card__tag" style="background:var(--rust)">-${discount}%</span>` : "")}
+      <button class="card__wish ${wished?'active':''}" data-wish="${p.id}" aria-label="Toggle wishlist" style="position:absolute;top:10px;right:10px;">
+        <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.2C.6 8.4 2.4 5 6 5c2 0 3.4 1 4 2.2C10.6 6 12 5 14 5c3.6 0 5.4 3.4 4 6.8C19.5 16.4 12 21 12 21z"/></svg>
+      </button>
+      ${svgArt(p.art)}
+    </div>
+    <div class="card__name">${p.name}</div>
+    <div class="card__meta">
+      <div class="card__price">${p.compare_at_price?`<del>₹${p.compare_at_price}</del>`:""}₹${p.price}</div>
+      <div class="card__sku">${p.sku||""}</div>
+    </div>
+    <button class="card__add" data-quickadd="${p.id}">Add to cart</button>
+  </div>`;
+}
+
+function headerHTML(){
+  const path = getRoute().path;
+  const is = (p) => path === p ? "active":"";
+  return `
+  <div class="announce">
+    <div class="announce__track">
+      <span>FREE SHIPPING ON ORDERS OVER ₹2999</span>
+      <span>10% OFF YOUR FIRST DROP — CODE: STREET10</span>
+      <span>INDEPENDENT INDIAN STREETWEAR — BUILT DIFFERENT</span>
+      <span>FREE SHIPPING ON ORDERS OVER ₹2999</span>
+      <span>10% OFF YOUR FIRST DROP — CODE: STREET10</span>
+    </div>
+  </div>
+  <header>
+    <nav class="nav">
+      <a href="#/" class="logo">VIROX</a>
+      <ul class="navlinks">
+        <li><a href="#/" class="${is('/')}">Home</a></li>
+        <li><a href="#/shop" class="${is('/shop')}">Shop</a></li>
+        <li><a href="#/shop?new=1">New Arrivals</a></li>
+        <li><a href="#/shop">Collections</a></li>
+        <li><a href="#/wishlist">Wishlist</a></li>
+      </ul>
+      <div class="navicons">
+        <button data-open="wishlist" aria-label="Wishlist">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.5-4.6-10-9.2C.6 8.4 2.4 5 6 5c2 0 3.4 1 4 2.2C10.6 6 12 5 14 5c3.6 0 5.4 3.4 4 6.8C19.5 16.4 12 21 12 21z"/></svg>
+          ${state.wishlist.length ? `<span class="badge" id="wishCount">${state.wishlist.length}</span>`:""}
+        </button>
+        <button data-open="cart" aria-label="Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/><path d="M6 6L4 3H2"/></svg>
+          ${cartCount() ? `<span class="badge" id="cartCount">${cartCount()}</span>`:""}
+        </button>
+        <button class="menu-btn" data-open="menu" aria-label="Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+  <div class="drawer" id="mobileDrawer">
+    <button class="drawer-close" data-close="menu">×</button>
+    <div class="logo">VIROX</div>
+    <ul class="navlinks">
+      <li><a href="#/">Home</a></li>
+      <li><a href="#/shop">Shop</a></li>
+      <li><a href="#/shop?new=1">New Arrivals</a></li>
+      <li><a href="#/wishlist">Wishlist</a></li>
+      <li><a href="#/cart">Cart</a></li>
+    </ul>
+  </div>`;
+}
+
+function homeHTML(){
+  const news = state.products.filter(p=>p.is_new).slice(0,6);
+  const list = news.length ? news : state.products.slice(0,6);
+  return `
+  ${heroHTML()}
+  ${dropbarHTML()}
+  ${trustHTML()}
+  <section class="section wrap">
+    <div class="section__head">
+      <h2 class="section__title h-display">Shop by category</h2>
+    </div>
+    <div class="cat-grid">
+      ${CATEGORIES.map(c=>`
+        <a class="cat-card" href="#/shop?category=${c.key}">
+          ${svgArt(c.art,{bg:"#101109"})}
+          <div class="cat-card__label">
+            <span>Shop now →</span>
+            <div class="h-display">${c.label}</div>
+          </div>
+        </a>`).join("")}
+    </div>
+  </section>
+  <section class="section wrap">
+    <div class="section__head">
+      <h2 class="section__title h-display">New arrivals</h2>
+      <a href="#/shop?new=1" class="section__link">View all →</a>
+    </div>
+    <div class="prod-grid">${list.map(productCard).join("")}</div>
+  </section>
+  <section class="wrap" style="padding-bottom:64px;">
+    <div class="promo-grid">
+      <div class="promo">
+        <span class="promo__label">Join the movement</span>
+        <h3 class="h-display">Be part of<br>something real.</h3>
+        <a href="#/shop" class="btn btn-outline" style="width:fit-content;">Shop now</a>
+      </div>
+      <div class="promo promo--accent">
+        <span class="promo__label">Limited drop</span>
+        <h3 class="h-display">Exclusive styles.<br>Limited quantities.</h3>
+        <a href="#/shop?new=1" class="btn btn-outline" style="width:fit-content;">Explore now</a>
+      </div>
+    </div>
+  </section>
+  ${newsletterHTML()}
+  `;
+}
+
+function heroHTML(){
+  return `
+  <section class="hero">
+    <div class="hero__copy">
+      <span class="eyebrow">New Collection</span>
+      <h1 class="h-display">Built different.<br>Made to <span class="accent">stand out.</span></h1>
+      <p>Oversized tees, printed on demand — independent Indian streetwear for those who set their own rules.</p>
+      <div class="hero__cta">
+        <a href="#/shop" class="btn btn-primary">Shop now</a>
+        <a href="#/shop?new=1" class="btn btn-outline">Explore collection</a>
+      </div>
+    </div>
+    <div class="hero__img">${heroFigureSVG()}</div>
+  </section>`;
+}
+function dropbarHTML(){
+  return `
+  <div class="dropbar">
+    <div class="dropbar__inner">
+      <span class="dropbar__label">Next drop lands in</span>
+      <div class="dropbar__timer" id="dropTimer"></div>
+    </div>
+  </div>`;
+}
+function trustHTML(){
+  const items = [
+    ["Free shipping","On orders over ₹2999"],
+    ["Easy returns","7-day returns"],
+    ["Secure payment","Cashfree checkout"],
+    ["Made to order","Printed after you order"],
+  ];
+  return `
+  <div class="trust"><div class="wrap trust__grid">
+    ${items.map(([t,s])=>`
+      <div class="trust__item">
+        <svg class="trust__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg>
+        <div><strong>${t}</strong><span>${s}</span></div>
+      </div>`).join("")}
+  </div></div>`;
+}
+function newsletterHTML(){
+  return `
+  <div class="newsletter"><div class="wrap newsletter__inner">
+    <div class="newsletter__copy"><strong>Stay in the loop</strong><span>New drops, exclusive offers, and more.</span></div>
+    <form id="newsletterForm">
+      <input type="email" required placeholder="Enter your email address" />
+      <button type="submit">Subscribe</button>
+    </form>
+  </div></div>`;
+}
+function footerHTML(){
+  return `
+  <footer class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="logo">VIROX</div>
+        <p>Streetwear made for the bold. Designed to break the norm. Printed on demand in India.</p>
+      </div>
+      <div class="foot-col"><h4>Shop</h4><ul>
+        <li><a href="#/shop">All products</a></li>
+        <li><a href="#/shop?category=streetwear">Streetwear</a></li>
+        <li><a href="#/shop?category=typography">Typography</a></li>
+        <li><a href="#/shop?category=anime">Anime</a></li>
+        <li><a href="#/shop?category=newdrop">New Drop</a></li>
+      </ul></div>
+      <div class="foot-col"><h4>Customer care</h4><ul>
+        <li><a href="#/">Contact us</a></li>
+        <li><a href="#/">Shipping &amp; delivery</a></li>
+        <li><a href="#/">Returns &amp; exchanges</a></li>
+        <li><a href="#/">Track order</a></li>
+      </ul></div>
+      <div class="foot-col"><h4>Company</h4><ul>
+        <li><a href="#/">About us</a></li>
+        <li><a href="#/">Our story</a></li>
+        <li><a href="#/">Wholesale</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© ${new Date().getFullYear()} VIROX. All rights reserved.</span>
+      <span>Made in India 🇮🇳</span>
+    </div>
+  </footer>`;
+}
+
+function shopHTML(){
+  const {params} = getRoute();
+  const activeCat = params.get("category");
+  const isNew = params.get("new");
+  let list = state.products;
+  if(activeCat) list = list.filter(p=>p.category===activeCat);
+  if(isNew) list = list.filter(p=>p.is_new);
+  return `
+  <div class="page wrap">
+    <div class="breadcrumb">Home / Shop</div>
+    <div class="section__head">
+      <h1 class="section__title h-display">${activeCat ? activeCat : (isNew ? "New arrivals":"All products")}</h1>
+    </div>
+    <div class="filters">
+      <a href="#/shop" class="chip ${!activeCat&&!isNew?'active':''}">All</a>
+      ${CATEGORIES.map(c=>`<a href="#/shop?category=${c.key}" class="chip ${activeCat===c.key?'active':''}">${c.label}</a>`).join("")}
+      <a href="#/shop?new=1" class="chip ${isNew?'active':''}">New</a>
+    </div>
+    ${list.length ? `<div class="prod-grid">${list.map(productCard).join("")}</div>` : `<div class="empty-page"><p>No products match this filter yet.</p></div>`}
+  </div>`;
+}
+
+function productHTML(slug){
+  const p = state.products.find(x=>x.slug===slug);
+  if(!p) return `<div class="empty-page wrap"><p>Product not found.</p><a href="#/shop" class="btn btn-outline" style="margin-top:16px;">Back to shop</a></div>`;
+  const sizes = ["S","M","L","XL","XXL"];
+  return `
+  <div class="page wrap">
+    <div class="breadcrumb"><a href="#/shop">Shop</a> / ${p.name}</div>
+    <div class="pdp">
+      <div class="pdp__gallery">${svgArt(p.art)}</div>
+      <div>
+        <span class="eyebrow" style="margin-bottom:10px;">${p.category}</span>
+        <h1 class="h-display" style="font-size:34px;">${p.name}</h1>
+        <div class="card__price" style="font-size:20px; margin:14px 0;">
+          ${p.compare_at_price?`<del>₹${p.compare_at_price}</del>`:""} ₹${p.price}
+        </div>
+        <p style="color:var(--ash); max-width:48ch; line-height:1.6;">
+          240 GSM heavyweight cotton, oversized drop-shoulder fit, printed to order in small batches.
+          Every piece is made after you order it — so no two drops stock the same way twice.
+        </p>
+        <div class="mono" style="font-size:12px; color:var(--ash); margin-top:14px;">SKU: ${p.sku||"—"}</div>
+
+        <div style="margin-top:22px;">
+          <span class="mono" style="font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ash);">Size</span>
+          <div class="size-grid" id="sizeGrid" data-product="${p.id}">
+            ${sizes.map((s,i)=>`<button class="size-box ${i===1?'active':''}" data-size="${s}">${s}</button>`).join("")}
+          </div>
+        </div>
+
+        <div style="display:flex; gap:12px; margin-top:20px;">
+          <button class="btn btn-primary" id="pdpAdd" data-id="${p.id}">Add to cart</button>
+          <button class="btn btn-outline" id="pdpWish" data-id="${p.id}">${isWishlisted(p.id)?"♥ Wishlisted":"♡ Wishlist"}</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function cartHTML(){
+  if(!state.cart.length){
+    return `<div class="page wrap"><div class="empty-page"><p>Your cart is empty.</p><a href="#/shop" class="btn btn-primary" style="margin-top:18px;">Start shopping</a></div></div>`;
+  }
+  return `
+  <div class="page wrap">
+    <h1 class="h-display" style="font-size:32px; margin-bottom:24px;">Your cart</h1>
+    <div style="display:grid; gap:20px; max-width:640px;">
+      ${state.cart.map(i=>`
+        <div class="line-item">
+          <div class="line-item__img">${svgArt(i.art)}</div>
+          <div class="line-item__info">
+            <span class="name">${i.name}</span>
+            <span class="size">Size ${i.size} · ₹${i.price}</span>
+            <div class="qty-row">
+              <button data-qty="-1" data-key="${i.key}">−</button>
+              <span>${i.qty}</span>
+              <button data-qty="1" data-key="${i.key}">+</button>
+            </div>
+          </div>
+          <button class="line-item__remove" data-remove="${i.key}">Remove</button>
+        </div>`).join("")}
+    </div>
+    <div style="max-width:640px; margin-top:28px; border-top:1px solid var(--line); padding-top:20px;">
+      <div class="subtotal-row"><span>Subtotal</span><span>₹${cartTotal()}</span></div>
+      <a href="#/checkout" class="btn btn-primary btn-block" style="margin-top:16px;">Checkout</a>
+    </div>
+  </div>`;
+}
+
+function wishlistHTML(){
+  if(!state.wishlist.length){
+    return `<div class="page wrap"><div class="empty-page"><p>Nothing saved yet.</p><a href="#/shop" class="btn btn-primary" style="margin-top:18px;">Browse products</a></div></div>`;
+  }
+  return `
+  <div class="page wrap">
+    <h1 class="h-display" style="font-size:32px; margin-bottom:24px;">Wishlist</h1>
+    <div class="prod-grid">${state.wishlist.map(productCard).join("")}</div>
+  </div>`;
+}
+
+function checkoutHTML(){
+  if(!state.cart.length){
+    return `<div class="page wrap"><div class="empty-page"><p>Your cart is empty.</p><a href="#/shop" class="btn btn-primary" style="margin-top:18px;">Start shopping</a></div></div>`;
+  }
+  return `
+  <div class="page wrap">
+    <h1 class="h-display" style="font-size:32px; margin-bottom:24px;">Checkout</h1>
+    <form id="checkoutForm" style="display:grid; gap:14px; max-width:520px;">
+      <input required name="name" placeholder="Full name" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
+      <input required type="email" name="email" placeholder="Email" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
+      <input required name="phone" placeholder="Phone" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
+      <input required name="line1" placeholder="Address" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
+      <div style="display:flex; gap:14px;">
+        <input required name="city" placeholder="City" style="flex:1;background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
+        <input required name="state" placeholder="State" style="flex:1;background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
+        <input required name="pincode" placeholder="Pincode" style="width:120px;background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
+      </div>
+      <div class="subtotal-row" style="margin-top:8px;"><span>Total</span><span>₹${cartTotal()}</span></div>
+      <button class="btn btn-primary btn-block" type="submit">Pay with Cashfree</button>
+      <p class="mono" style="font-size:11px;color:var(--ash);">Server re-validates stock &amp; price before creating the payment session.</p>
+    </form>
+  </div>`;
+}
+
+/* ---------- app shell render ---------- */
+function render(){
+  const {path} = getRoute();
+  let body = "";
+  if(!state.loaded){
+    body = `<div class="page wrap"><div class="empty-page">Loading…</div></div>`;
+  } else if(path === "/" || path === ""){
+    body = homeHTML();
+  } else if(path === "/shop"){
+    body = shopHTML();
+  } else if(path.startsWith("/product/")){
+    body = productHTML(decodeURIComponent(path.split("/product/")[1]));
+  } else if(path === "/cart"){
+    body = cartHTML();
+  } else if(path === "/wishlist"){
+    body = wishlistHTML();
+  } else if(path === "/checkout"){
+    body = checkoutHTML();
+  } else if(path.startsWith("/order/")){
+    body = `<div class="page wrap"><div class="empty-page"><h2 class="h-display" style="color:var(--acid);font-size:28px;">Order placed</h2><p style="margin-top:10px;">Order ID: ${path.split("/order/")[1]}</p><a href="#/shop" class="btn btn-primary" style="margin-top:20px;">Keep shopping</a></div></div>`;
+  } else {
+    body = `<div class="page wrap"><div class="empty-page">Page not found.</div></div>`;
+  }
+
+  document.getElementById("app").innerHTML = `
+    ${headerHTML()}
+    <main>${body}</main>
+    ${footerHTML()}
+    ${cartDrawerHTML()}
+    ${wishDrawerHTML()}
+  `;
+  window.scrollTo(0,0);
+  bindEvents();
+  if(path === "/" || path === "") startDropCountdown();
+}
+
+/* ---------- drawers ---------- */
+let drawerState = null; // 'cart' | 'wishlist' | 'menu' | null
+
+function cartDrawerHTML(){
+  return `
+  <div class="side-drawer" id="cartDrawer">
+    <div class="side-drawer__head"><h3>Your cart</h3><button data-close="cart" style="font-size:24px;">×</button></div>
+    <div class="side-drawer__body">
+      ${state.cart.length ? state.cart.map(i=>`
+        <div class="line-item">
+          <div class="line-item__img">${svgArt(i.art)}</div>
+          <div class="line-item__info">
+            <span class="name">${i.name}</span>
+            <span class="size">Size ${i.size} · ₹${i.price}</span>
+            <div class="qty-row">
+              <button data-qty="-1" data-key="${i.key}">−</button>
+              <span>${i.qty}</span>
+              <button data-qty="1" data-key="${i.key}">+</button>
+            </div>
+          </div>
+          <button class="line-item__remove" data-remove="${i.key}">Remove</button>
+        </div>`).join("") : `<div class="empty-state">Your cart is empty.</div>`}
+    </div>
+    ${state.cart.length ? `
+    <div class="side-drawer__foot">
+      <div class="subtotal-row"><span>Subtotal</span><span>₹${cartTotal()}</span></div>
+      <a href="#/checkout" class="btn btn-primary btn-block" data-close="cart">Checkout</a>
+    </div>` : ""}
+  </div>`;
+}
+function wishDrawerHTML(){
+  return `
+  <div class="side-drawer" id="wishDrawer">
+    <div class="side-drawer__head"><h3>Wishlist</h3><button data-close="wishlist" style="font-size:24px;">×</button></div>
+    <div class="side-drawer__body">
+      ${state.wishlist.length ? state.wishlist.map(p=>`
+        <div class="line-item">
+          <div class="line-item__img">${svgArt(p.art)}</div>
+          <div class="line-item__info">
+            <span class="name">${p.name}</span>
+            <span class="size">₹${p.price}</span>
+          </div>
+          <button class="line-item__remove" data-wish="${p.id}">Remove</button>
+        </div>`).join("") : `<div class="empty-state">Nothing saved yet.</div>`}
+    </div>
+  </div>`;
+}
+function openDrawer(which){
+  drawerState = which;
+  document.getElementById("scrim").classList.add("show");
+  if(which==="cart") document.getElementById("cartDrawer").classList.add("open");
+  if(which==="wishlist") document.getElementById("wishDrawer").classList.add("open");
+  if(which==="menu") document.getElementById("mobileDrawer").classList.add("open");
+}
+function closeDrawers(){
+  drawerState = null;
+  document.getElementById("scrim").classList.remove("show");
+  document.getElementById("cartDrawer")?.classList.remove("open");
+  document.getElementById("wishDrawer")?.classList.remove("open");
+  document.getElementById("mobileDrawer")?.classList.remove("open");
+}
+function renderCartCount(){ /* full re-render handles this, kept for clarity */ }
+function renderWishCount(){}
+function renderCartDrawer(){
+  document.getElementById("cartDrawer").outerHTML = cartDrawerHTML();
+  bindDrawerEvents();
+}
+
+/* ---------- events ---------- */
+function bindEvents(){
+  document.getElementById("scrim").onclick = closeDrawers;
+
+  document.querySelectorAll("[data-open]").forEach(btn=>{
+    btn.addEventListener("click", ()=>openDrawer(btn.dataset.open));
+  });
+  document.querySelectorAll("[data-close]").forEach(btn=>{
+    btn.addEventListener("click", ()=>{ closeDrawers(); });
+  });
+
+  document.querySelectorAll("[data-quickadd]").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.preventDefault();
+      const p = state.products.find(x=>x.id===btn.dataset.quickadd);
+      if(p) addToCart(p, "M", 1);
+    });
+  });
+  document.querySelectorAll("[data-wish]").forEach(btn=>{
+    btn.addEventListener("click", (e)=>{
+      e.preventDefault();
+      const p = state.products.find(x=>x.id===btn.dataset.wish) || state.wishlist.find(x=>x.id===btn.dataset.wish);
+      if(p) toggleWishlist(p);
+    });
+  });
+
+  const sizeGrid = document.getElementById("sizeGrid");
+  if(sizeGrid){
+    sizeGrid.querySelectorAll(".size-box").forEach(b=>{
+      b.addEventListener("click", ()=>{
+        sizeGrid.querySelectorAll(".size-box").forEach(x=>x.classList.remove("active"));
+        b.classList.add("active");
+      });
+    });
+  }
+  const pdpAdd = document.getElementById("pdpAdd");
+  if(pdpAdd){
+    pdpAdd.addEventListener("click", ()=>{
+      const p = state.products.find(x=>x.id===pdpAdd.dataset.id);
+      const size = sizeGrid?.querySelector(".size-box.active")?.dataset.size || "M";
+      if(p) addToCart(p, size, 1);
+    });
+  }
+  const pdpWish = document.getElementById("pdpWish");
+  if(pdpWish){
+    pdpWish.addEventListener("click", ()=>{
+      const p = state.products.find(x=>x.id===pdpWish.dataset.id);
+      if(p) toggleWishlist(p);
+    });
+  }
+
+  document.querySelectorAll("[data-qty]").forEach(btn=>{
+    btn.addEventListener("click", ()=>updateQty(btn.dataset.key, parseInt(btn.dataset.qty)));
+  });
+  document.querySelectorAll("[data-remove]").forEach(btn=>{
+    btn.addEventListener("click", ()=>removeFromCart(btn.dataset.remove));
+  });
+
+  const newsletterForm = document.getElementById("newsletterForm");
+  if(newsletterForm){
+    newsletterForm.addEventListener("submit", (e)=>{
+      e.preventDefault();
+      showToast("Subscribed! Watch your inbox for the next drop.");
+      newsletterForm.reset();
+    });
+  }
+
+  const checkoutForm = document.getElementById("checkoutForm");
+  if(checkoutForm){
+    checkoutForm.addEventListener("submit", async (e)=>{
+      e.preventDefault();
+      const fd = new FormData(checkoutForm);
+      const customer = {name:fd.get("name"), email:fd.get("email"), phone:fd.get("phone")};
+      const shipping = {
+        name:fd.get("name"), line1:fd.get("line1"), city:fd.get("city"),
+        state:fd.get("state"), pincode:fd.get("pincode"), phone:fd.get("phone")
+      };
+      const submitBtn = checkoutForm.querySelector("button[type=submit]");
+      submitBtn.disabled = true; submitBtn.textContent = "Processing…";
+      try{
+        const {orderId, paymentSessionId} = await submitCheckout(customer, shipping);
+        // In production: load Cashfree JS SDK and call cashfree.checkout({paymentSessionId})
+        // to redirect the shopper into the hosted payment page. Example:
+        //
+        // const cashfree = Cashfree({mode: "sandbox"});
+        // cashfree.checkout({ paymentSessionId, redirectTarget: "_self" });
+        console.log("Cashfree session ready:", paymentSessionId);
+        state.cart = []; saveCart();
+        location.hash = `#/order/${orderId}`;
+      }catch(err){
+        showToast(err.message || "Checkout failed — try again");
+        submitBtn.disabled = false; submitBtn.textContent = "Pay with Cashfree";
+      }
+    });
+  }
+}
+function bindDrawerEvents(){
+  document.querySelectorAll("[data-qty]").forEach(btn=>{
+    btn.addEventListener("click", ()=>updateQty(btn.dataset.key, parseInt(btn.dataset.qty)));
+  });
+  document.querySelectorAll("[data-remove]").forEach(btn=>{
+    btn.addEventListener("click", ()=>removeFromCart(btn.dataset.remove));
+  });
+  document.querySelectorAll("[data-close]").forEach(btn=>{
+    btn.addEventListener("click", closeDrawers);
+  });
+}
+
+/* ---------- boot ---------- */
+(async function init(){
+  render(); // show loading state immediately
+  await fetchProducts();
+  render();
+})();
+</script>
+</body>
+</html>
