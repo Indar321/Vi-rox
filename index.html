@@ -6,16 +6,19 @@
 <title>VIROX — Built Different</title>
 <meta name="description" content="Independent Indian streetwear. Limited drops, print-on-demand, built different." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#0b0c0a;
-    --ink-2:#131410;
-    --bone:#f3f3ee;
-    --ash:#8c8c82;
-    --acid:#c6ff3d;
-    --rust:#ff4b1f;
-    --line:#2b2b26;
+    --ink:#ffffff;
+    --ink-2:#f3f3f1;
+    --bone:#111111;
+    --ash:#767672;
+    --acid:#111111;
+    --rust:#c02c14;
+    --line:#e6e6e2;
+    --dark-bg:#0a0a0a;
+    --dark-fg:#ffffff;
+    --dark-muted:rgba(255,255,255,.55);
     --radius:0;
   }
   *{box-sizing:border-box; margin:0; padding:0;}
@@ -23,7 +26,7 @@
   body{
     background:var(--ink);
     color:var(--bone);
-    font-family:'Archivo', sans-serif;
+    font-family:'Barlow Semi Condensed', sans-serif;
     -webkit-font-smoothing:antialiased;
     min-height:100vh;
   }
@@ -33,7 +36,7 @@
   button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit;}
   img{max-width:100%; display:block;}
   .h-display{
-    font-family:'Bebas Neue', sans-serif;
+    font-family:'Barlow Condensed', sans-serif;
     text-transform:uppercase;
     letter-spacing:0.04em;
     line-height:0.92;
@@ -63,7 +66,8 @@
   /* ===== Header ===== */
   header{
     position:sticky; top:0; z-index:50;
-    background:rgba(11,12,10,0.92);
+    background:rgba(10,10,10,0.94);
+    color:var(--dark-fg);
     backdrop-filter:blur(6px);
     border-bottom:1px solid var(--line);
   }
@@ -72,22 +76,15 @@
     padding:18px 24px; gap:24px;
   }
   .logo{
-    font-family:'Bebas Neue', sans-serif;
+    font-family:'Barlow Condensed', sans-serif;
     font-size:28px; letter-spacing:0.06em;
-    position:relative; display:inline-block;
-  }
-  .logo::after{
-    content:"";
-    position:absolute; left:-4px; right:-4px; bottom:-3px; height:5px;
-    background:var(--acid);
-    transform:skewX(-12deg);
-    z-index:-1;
+    display:inline-block;
   }
   .navlinks{display:flex; gap:32px; font-size:13px; font-weight:600; letter-spacing:0.04em; text-transform:uppercase;}
   .navlinks a{position:relative; padding-bottom:4px; opacity:.85; transition:opacity .15s;}
   .navlinks a:hover, .navlinks a.active{opacity:1;}
   .navlinks a.active::after{
-    content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--acid);
+    content:""; position:absolute; left:0; right:0; bottom:0; height:2px; background:var(--dark-fg);
   }
   .navlinks{display:none;}
   @media(min-width:900px){ .navlinks{display:flex;} }
@@ -95,7 +92,7 @@
   .navicons button{position:relative; width:22px; height:22px; display:flex; align-items:center; justify-content:center;}
   .badge{
     position:absolute; top:-6px; right:-8px;
-    background:var(--acid); color:var(--ink);
+    background:var(--dark-fg); color:var(--dark-bg);
     font-family:'JetBrains Mono'; font-size:10px; font-weight:700;
     width:16px; height:16px; border-radius:50%;
     display:flex; align-items:center; justify-content:center;
@@ -110,9 +107,9 @@
     padding:24px; overflow-y:auto;
   }
   .drawer.open{transform:translateX(0);}
-  .drawer .navlinks{display:flex; flex-direction:column; gap:0; font-size:22px; font-family:'Bebas Neue'; letter-spacing:.05em; margin-top:48px;}
+  .drawer .navlinks{display:flex; flex-direction:column; gap:0; font-size:22px; font-family:'Barlow Condensed'; letter-spacing:.05em; margin-top:48px;}
   .drawer .navlinks a{padding:16px 0; border-bottom:1px solid var(--line);}
-  .drawer-close{position:absolute; top:24px; right:24px; font-size:28px; font-family:'Bebas Neue';}
+  .drawer-close{position:absolute; top:24px; right:24px; font-size:28px; font-family:'Barlow Condensed';}
 
   /* ===== Buttons ===== */
   .btn{
@@ -147,7 +144,7 @@
   }
   .eyebrow::before{content:""; width:8px; height:8px; background:var(--acid); display:inline-block;}
   .hero h1{font-size:clamp(42px,7vw,84px);}
-  .hero h1 .accent{color:var(--acid);}
+  .hero h1 .accent{background:var(--dark-bg); color:var(--dark-fg); padding:0 10px; display:inline-block;}
   .hero p{color:var(--ash); font-size:16px; max-width:38ch; line-height:1.5;}
   .hero__cta{display:flex; gap:14px; flex-wrap:wrap; margin-top:8px;}
   .hero__img{
@@ -233,6 +230,84 @@
   }
   .card__add:hover{background:var(--acid); border-color:var(--acid); color:var(--ink);}
 
+  /* ===== Featured Drops (dark slider) ===== */
+  .drops{background:var(--dark-bg); color:var(--dark-fg); padding:56px 0 50px; overflow:hidden;}
+  .drops__head{max-width:820px; margin-bottom:32px;}
+  .drops__eyebrow{display:block; margin-bottom:12px; font-size:12px; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--dark-muted);}
+  .drops__head h2{font-size:clamp(40px,5.5vw,72px); font-weight:700; line-height:.86; letter-spacing:-.03em; text-transform:uppercase; color:var(--dark-fg); margin-bottom:14px;}
+  .drops__head p{max-width:640px; font-size:15px; line-height:1.5; color:var(--dark-muted);}
+  .drops__slider{position:relative;}
+  .drops__track{display:flex; gap:16px; overflow-x:auto; scroll-behavior:smooth; scrollbar-width:none; padding-bottom:6px; cursor:grab;}
+  .drops__track::-webkit-scrollbar{display:none;}
+  .drops__track:active{cursor:grabbing;}
+  .drop-card{position:relative; flex:0 0 260px; min-width:0;}
+  @media(min-width:700px){ .drop-card{flex-basis:calc((100% - 48px)/4);} }
+  .drop-card__img{position:relative; aspect-ratio:4/5; overflow:hidden; background:#151515;}
+  .drop-card__img img{width:100%; height:100%; object-fit:cover; transition:transform .5s cubic-bezier(.2,.7,.2,1);}
+  .drop-card:hover .drop-card__img img{transform:scale(1.05);}
+  .drop-card__badge{position:absolute; top:12px; left:12px; background:#fff; color:#000; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; padding:5px 9px;}
+  .drop-card__title-row{display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-top:12px;}
+  .drop-card__title-row h3{font-size:15px; font-weight:600; text-transform:uppercase; letter-spacing:.02em;}
+  .drop-card__price{font-family:'JetBrains Mono'; font-size:12px; color:var(--dark-muted); white-space:nowrap;}
+  .drop-card__link{display:inline-flex; align-items:center; gap:6px; margin-top:6px; font-size:12px; letter-spacing:.06em; text-transform:uppercase; color:var(--dark-fg); border-bottom:1px solid rgba(255,255,255,.35); padding-bottom:2px;}
+  .drops__controls{display:flex; gap:10px; justify-content:flex-end; margin-top:20px;}
+  .drops__arrow{width:40px; height:40px; border:1px solid rgba(255,255,255,.25); border-radius:50%; display:flex; align-items:center; justify-content:center; color:#fff; font-size:16px; transition:background .2s;}
+  .drops__arrow:hover{background:rgba(255,255,255,.1);}
+
+  /* ===== Comparison slider (front/back) ===== */
+  .compare-section{padding:64px 0; background:var(--ink);}
+  .compare-grid{display:grid; grid-template-columns:1fr; gap:32px; align-items:center;}
+  @media(min-width:900px){ .compare-grid{grid-template-columns:1.3fr 1fr;} }
+  .compare-slider{position:relative; aspect-ratio:4/3; overflow:hidden; background:var(--ink-2); user-select:none;}
+  .compare-slider img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; pointer-events:none; -webkit-user-drag:none; user-drag:none;}
+  .compare-slider .after{clip-path:inset(0 0 0 50%);}
+  .compare-slider__handle{position:absolute; top:0; bottom:0; left:50%; width:2px; background:#fff; transform:translateX(-1px); box-shadow:0 0 0 1px rgba(0,0,0,.15);}
+  .compare-slider__grip{position:absolute; top:50%; left:50%; width:40px; height:40px; background:#fff; border-radius:50%; transform:translate(-50%,-50%); display:flex; align-items:center; justify-content:center; font-size:14px; box-shadow:0 2px 10px rgba(0,0,0,.25); cursor:ew-resize;}
+  .compare-slider__label{position:absolute; top:14px; font-family:'JetBrains Mono'; font-size:11px; letter-spacing:.08em; text-transform:uppercase; background:rgba(255,255,255,.9); color:#000; padding:4px 9px;}
+  .compare-slider__label.before{left:14px;}
+  .compare-slider__label.after{right:14px;}
+  .compare-copy h2{font-size:clamp(30px,4vw,44px); text-transform:uppercase; line-height:.95; margin-bottom:14px;}
+  .compare-copy p{color:var(--ash); font-size:15px; max-width:36ch; line-height:1.5;}
+
+  /* ===== Story section ===== */
+  .story{padding:80px 0; background:var(--ink);}
+  .story__label{margin-bottom:36px; font-size:17px; color:var(--ash);}
+  .story__grid{display:grid; grid-template-columns:1fr; gap:40px; align-items:center;}
+  @media(min-width:900px){ .story__grid{grid-template-columns:1fr 1fr; gap:8vw;} }
+  .story__headline{font-size:clamp(52px,8vw,104px); font-weight:700; line-height:.84; letter-spacing:-.04em; text-transform:uppercase;}
+  .story__content p{margin-bottom:22px; font-size:16px; line-height:1.55; color:var(--ash); max-width:60ch;}
+  .story__btn{display:inline-flex; align-items:center; justify-content:space-between; gap:14px; min-width:170px; height:48px; padding:4px 5px 4px 20px; background:var(--bone); color:var(--ink); border-radius:30px; font-size:15px; font-weight:600; letter-spacing:.03em; text-transform:uppercase; transition:transform .2s ease;}
+  .story__btn:hover{transform:translateY(-2px);}
+  .story__btn-arrow{width:38px; height:38px; border-radius:50%; background:var(--ink); color:var(--bone); display:flex; align-items:center; justify-content:center; font-size:18px;}
+
+  /* ===== Benefits (Why shop with us) ===== */
+  .benefits{padding:80px 0; background:var(--ink);}
+  .benefits__wrapper{display:grid; grid-template-columns:1fr; gap:48px;}
+  @media(min-width:900px){ .benefits__wrapper{grid-template-columns:0.9fr 1.5fr; align-items:center;} }
+  .benefits__eyebrow{display:block; margin-bottom:14px; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ash);}
+  .benefits__intro h2{font-size:clamp(38px,5vw,62px); line-height:.88; letter-spacing:-.03em; text-transform:uppercase; margin-bottom:18px;}
+  .benefits__intro p{color:var(--ash); font-size:16px; line-height:1.5; max-width:38ch;}
+  .benefits__grid{display:grid; grid-template-columns:repeat(2,1fr); gap:40px;}
+  @media(max-width:520px){ .benefits__grid{grid-template-columns:1fr; gap:28px;} }
+  .benefit{display:grid; grid-template-columns:52px 1fr; gap:16px; align-items:start; transition:transform .2s ease;}
+  .benefit:hover{transform:translateY(-3px);}
+  .benefit__icon{width:52px; height:52px; border:1px solid var(--line); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--ash); transition:.2s ease; flex:none;}
+  .benefit:hover .benefit__icon{background:var(--bone); color:var(--ink); border-color:var(--bone);}
+  .benefit__icon svg{width:20px; height:20px; stroke:currentColor; stroke-width:1.5; fill:none;}
+  .benefit h3{font-size:19px; font-weight:600; text-transform:uppercase; margin-bottom:6px;}
+  .benefit p{color:var(--ash); font-size:14px; line-height:1.45; max-width:28ch;}
+
+  /* ===== FAQ accordion ===== */
+  .faq{padding:64px 0 88px; background:var(--ink);}
+  .faq h2{font-size:clamp(26px,3.4vw,36px); text-transform:uppercase; margin-bottom:28px;}
+  .faq-row{border-top:1px solid var(--line);}
+  .faq-row:last-child{border-bottom:1px solid var(--line);}
+  .faq-row summary{list-style:none; cursor:pointer; padding:20px 4px; display:flex; align-items:center; justify-content:space-between; font-size:16px; font-weight:600; text-transform:uppercase; letter-spacing:.01em;}
+  .faq-row summary::-webkit-details-marker{display:none;}
+  .faq-row summary::after{content:"+"; font-family:'JetBrains Mono'; font-size:20px; font-weight:400; transition:transform .2s ease;}
+  .faq-row[open] summary::after{transform:rotate(45deg);}
+  .faq-row p{padding:0 4px 20px; color:var(--ash); font-size:14px; line-height:1.55; max-width:65ch;}
+
   /* ===== Promo banners ===== */
   .promo-grid{display:grid; grid-template-columns:1fr; gap:2px; background:var(--line);}
   @media(min-width:820px){ .promo-grid{grid-template-columns:1fr 1fr;} }
@@ -251,12 +326,12 @@
   .newsletter__inner{
     display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:20px; padding:28px 24px;
   }
-  .newsletter__copy strong{display:block; font-family:'Bebas Neue'; font-size:20px; letter-spacing:.04em;}
+  .newsletter__copy strong{display:block; font-family:'Barlow Condensed'; font-size:20px; letter-spacing:.04em;}
   .newsletter__copy span{color:var(--ash); font-size:13px;}
   .newsletter form{display:flex; gap:0; flex:1; max-width:420px; min-width:260px;}
   .newsletter input{
     flex:1; background:transparent; border:1px solid var(--line); border-right:none;
-    padding:12px 14px; color:var(--bone); font-family:'Archivo'; font-size:13px;
+    padding:12px 14px; color:var(--bone); font-family:'Barlow Semi Condensed'; font-size:13px;
   }
   .newsletter input:focus-visible{outline-offset:-2px;}
   .newsletter button{background:var(--acid); color:var(--ink); padding:0 20px; font-family:'JetBrains Mono'; font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase;}
@@ -285,10 +360,10 @@
   }
   .side-drawer.open{transform:translateX(0);}
   .side-drawer__head{display:flex; align-items:center; justify-content:space-between; padding:20px 24px; border-bottom:1px solid var(--line);}
-  .side-drawer__head h3{font-family:'Bebas Neue'; font-size:22px; letter-spacing:.04em;}
+  .side-drawer__head h3{font-family:'Barlow Condensed'; font-size:22px; letter-spacing:.04em;}
   .side-drawer__body{flex:1; overflow-y:auto; padding:20px 24px; display:flex; flex-direction:column; gap:18px;}
   .line-item{display:flex; gap:14px;}
-  .line-item__img{width:64px; height:64px; background:var(--ink-2); flex:none;}
+  .line-item__img{width:64px; height:64px; background:var(--ink-2); flex:none; overflow:hidden;}
   .line-item__info{flex:1; display:flex; flex-direction:column; gap:4px;}
   .line-item__info .name{font-size:13px; font-weight:600;}
   .line-item__info .size{font-family:'JetBrains Mono'; font-size:11px; color:var(--ash);}
@@ -350,6 +425,7 @@ const API_BASE = window.VIROX_API_BASE || "http://localhost:4000";
 
 /* ---------- demo catalog (used only if the API is unreachable) ---------- */
 const DEMO_PRODUCTS = [
+  {id:"p0", slug:"virox-clothing-oversized-tee-black", name:"Virox Clothing Oversized Tee — Black", category:"typography", price:1499, compare_at_price:null, is_new:true, sku:"VX-TY-000", image:"assets/virox-clothing-oversized-tee-black.png"},
   {id:"p1", slug:"chaos-oversized-tee", name:"Chaos Oversized Tee — Black", category:"streetwear", price:1499, compare_at_price:null, is_new:true, sku:"VX-ST-001", art:"skull"},
   {id:"p2", slug:"stand-out-oversized-tee", name:"Stand Out Oversized Tee — Sand", category:"typography", price:1399, compare_at_price:null, is_new:true, sku:"VX-TY-002", art:"type"},
   {id:"p3", slug:"ronin-oversized-tee", name:"Ronin Oversized Tee — Black", category:"anime", price:1599, compare_at_price:1799, is_new:false, sku:"VX-AN-003", art:"anime"},
@@ -381,7 +457,7 @@ function addToCart(product, size="M", qty=1){
   else {
     state.cart.push({
       key, id:product.id, variant_id: product.variant_id || product.id,
-      name:product.name, price:product.price, size, qty, art:product.art
+      name:product.name, price:product.price, size, qty, art:product.art, image:product.image
     });
   }
   saveCart();
@@ -445,7 +521,7 @@ async function submitCheckout(customer, shipping){
 
 /* ---------- tiny SVG art library (placeholder product art) ---------- */
 function svgArt(kind, opts={}){
-  const stroke = opts.stroke || "#c6ff3d";
+  const stroke = opts.stroke || "#ffffff";
   const bg = opts.bg || "#131410";
   const common = `viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"`;
   const wrap = (inner) => `<svg ${common} preserveAspectRatio="xMidYMid slice"><rect width="200" height="200" fill="${bg}"/>${inner}</svg>`;
@@ -454,24 +530,30 @@ function svgArt(kind, opts={}){
     case "hood": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M60 150 L60 90 Q100 40 140 90 L140 150"/><path d="M75 95 Q100 75 125 95"/><line x1="70" y1="150" x2="70" y2="175"/><line x1="130" y1="150" x2="130" y2="175"/></g>`);
     case "cargo": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M75 30 L70 170 L95 170 L100 100 L105 170 L130 170 L125 30 Z"/><rect x="60" y="90" width="20" height="26"/><rect x="120" y="90" width="20" height="26"/></g>`);
     case "tee": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M70 45 L45 60 L58 82 L70 72 L70 165 L130 165 L130 72 L142 82 L155 60 L130 45 Q115 60 100 60 Q85 60 70 45 Z"/></g>`);
-    case "type": return wrap(`<g><path d="M70 45 L45 60 L58 82 L70 72 L70 165 L130 165 L130 72 L142 82 L155 60 L130 45 Q115 60 100 60 Q85 60 70 45 Z" fill="none" stroke="${stroke}" stroke-width="3"/><text x="100" y="120" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="22" fill="${stroke}" letter-spacing="1">STAND</text><text x="100" y="140" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="22" fill="${stroke}" letter-spacing="1">OUT</text></g>`);
+    case "type": return wrap(`<g><path d="M70 45 L45 60 L58 82 L70 72 L70 165 L130 165 L130 72 L142 82 L155 60 L130 45 Q115 60 100 60 Q85 60 70 45 Z" fill="none" stroke="${stroke}" stroke-width="3"/><text x="100" y="120" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="22" fill="${stroke}" letter-spacing="1">STAND</text><text x="100" y="140" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="22" fill="${stroke}" letter-spacing="1">OUT</text></g>`);
     case "anime": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M70 45 L45 60 L58 82 L70 72 L70 165 L130 165 L130 72 L142 82 L155 60 L130 45 Q115 60 100 60 Q85 60 70 45 Z"/><path d="M85 95 L100 75 L115 95" /><circle cx="90" cy="112" r="4" fill="${stroke}" stroke="none"/><circle cx="110" cy="112" r="4" fill="${stroke}" stroke="none"/><path d="M88 130 Q100 140 112 130"/></g>`);
     case "cap": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M55 110 Q100 65 145 110 Q145 130 100 132 Q55 130 55 110 Z"/><path d="M55 112 L20 122 Q50 132 60 118"/></g>`);
     case "jacket": return wrap(`<g fill="none" stroke="${stroke}" stroke-width="3"><path d="M65 45 L45 65 L58 90 L65 82 L65 170 L100 170 L100 45 Z"/><path d="M135 45 L155 65 L142 90 L135 82 L135 170 L100 170 L100 45 Z"/><line x1="100" y1="45" x2="100" y2="170"/></g>`);
     default: return wrap(`<circle cx="100" cy="100" r="40" fill="none" stroke="${stroke}" stroke-width="3"/>`);
   }
 }
+function mediaFor(p, opts={}){
+  if(p && p.image){
+    return `<img src="${p.image}" alt="${p.name||''}" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:${opts.pos||'top center'};">`;
+  }
+  return svgArt((p && p.art) || "tee", opts);
+}
 function heroFigureSVG(){
   return `<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
     <rect width="400" height="500" fill="#0b0c0a"/>
     <g opacity="0.9">
       <rect x="60" y="60" width="280" height="380" fill="#161711" />
-      <g fill="none" stroke="#c6ff3d" stroke-width="4">
+      <g fill="none" stroke="#ffffff" stroke-width="4">
         <circle cx="200" cy="150" r="46"/>
         <path d="M140 300 Q200 260 260 300 L260 420 L140 420 Z"/>
         <path d="M140 300 L100 340 M260 300 L300 340"/>
       </g>
-      <text x="200" y="470" text-anchor="middle" font-family="Bebas Neue, sans-serif" font-size="26" fill="#f3f3ee" letter-spacing="4">VIROX</text>
+      <text x="200" y="470" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="26" fill="#f3f3ee" letter-spacing="4">VIROX</text>
     </g>
   </svg>`;
 }
@@ -531,7 +613,7 @@ function productCard(p){
       <button class="card__wish ${wished?'active':''}" data-wish="${p.id}" aria-label="Toggle wishlist" style="position:absolute;top:10px;right:10px;">
         <svg viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-10-9.2C.6 8.4 2.4 5 6 5c2 0 3.4 1 4 2.2C10.6 6 12 5 14 5c3.6 0 5.4 3.4 4 6.8C19.5 16.4 12 21 12 21z"/></svg>
       </button>
-      ${svgArt(p.art)}
+      ${mediaFor(p)}
     </div>
     <div class="card__name">${p.name}</div>
     <div class="card__meta">
@@ -598,8 +680,8 @@ function homeHTML(){
   const list = news.length ? news : state.products.slice(0,6);
   return `
   ${heroHTML()}
-  ${dropbarHTML()}
-  ${trustHTML()}
+  ${marqueeHTML()}
+  ${dropsHTML()}
   <section class="section wrap">
     <div class="section__head">
       <h2 class="section__title h-display">Shop by category</h2>
@@ -622,6 +704,10 @@ function homeHTML(){
     </div>
     <div class="prod-grid">${list.map(productCard).join("")}</div>
   </section>
+  ${storyHTML()}
+  ${compareSliderHTML()}
+  ${benefitsHTML()}
+  ${faqHTML()}
   <section class="wrap" style="padding-bottom:64px;">
     <div class="promo-grid">
       <div class="promo">
@@ -638,6 +724,135 @@ function homeHTML(){
   </section>
   ${newsletterHTML()}
   `;
+}
+
+function marqueeHTML(){
+  const item = "VIROX EXCLUSIVE";
+  return `
+  <div class="announce" style="background:var(--ink); color:var(--bone); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+    <div class="announce__track">
+      ${Array(6).fill(`<span>${item}</span>`).join("")}
+    </div>
+  </div>`;
+}
+
+function dropsHTML(){
+  const items = state.products.slice(0,12);
+  if(!items.length) return "";
+  return `
+  <section class="drops">
+    <div class="wrap drops__head">
+      <span class="drops__eyebrow">Virox / Featured</span>
+      <h2>Featured drops:<br>stand out, stay ahead</h2>
+      <p>Exclusive designs, bold graphics, and street-ready energy — discover the latest Virox pieces before they're gone.</p>
+    </div>
+    <div class="wrap drops__slider">
+      <div class="drops__track" id="dropsTrack">
+        ${items.map(p=>{
+          const discount = p.compare_at_price ? Math.round((1-p.price/p.compare_at_price)*100) : null;
+          return `
+          <article class="drop-card">
+            <a href="#/product/${p.slug}" class="drop-card__img">
+              ${p.is_new ? `<span class="drop-card__badge">New</span>` : (discount ? `<span class="drop-card__badge">-${discount}%</span>` : "")}
+              ${mediaFor(p)}
+            </a>
+            <div class="drop-card__title-row">
+              <h3>${p.name}</h3>
+              <span class="drop-card__price">₹${p.price}</span>
+            </div>
+            <a href="#/product/${p.slug}" class="drop-card__link">View product <span>↗</span></a>
+          </article>`;
+        }).join("")}
+      </div>
+      <div class="drops__controls">
+        <button class="drops__arrow" id="dropsPrev" aria-label="Previous">←</button>
+        <button class="drops__arrow" id="dropsNext" aria-label="Next">→</button>
+      </div>
+    </div>
+  </section>`;
+}
+
+function storyHTML(){
+  return `
+  <section class="story wrap">
+    <div class="story__label">Streetwear with a story</div>
+    <div class="story__grid">
+      <div class="h-display story__headline">Wear the<br>movement,<br>break the<br>mold.</div>
+      <div class="story__content">
+        <p>Born from the pulse of the streets, our brand is a tribute to the rebels, the dreamers, and the rule-breakers who shape the culture. Inspired by the raw energy of city life — graffiti-covered alleys, underground music scenes, and late-night skate sessions — we craft streetwear that speaks to individuality and self-expression.</p>
+        <p>Every stitch, every design, and every drop is a reflection of the movement, blending bold graphics, oversized silhouettes, and urban edge. More than just clothing, we're a statement — wear your story, break the mold, and define your own path.</p>
+        <a href="#/shop" class="story__btn"><span>Get it now</span><span class="story__btn-arrow">→</span></a>
+      </div>
+    </div>
+  </section>`;
+}
+
+function compareSliderHTML(){
+  const p = state.products[0];
+  const img = p ? (p.image || "") : "";
+  return `
+  <section class="compare-section wrap">
+    <div class="compare-grid">
+      <div class="compare-slider" id="compareSlider">
+        <span class="compare-slider__label before">Front</span>
+        <span class="compare-slider__label after">Back</span>
+        ${img ? `<img class="before" src="${img}">` : svgArt(p?p.art:"tee",{})}
+        ${img ? `<img class="after" src="${img}" style="transform:scaleX(-1);">` : ""}
+        <div class="compare-slider__handle" id="compareHandle">
+          <div class="compare-slider__grip">↔</div>
+        </div>
+      </div>
+      <div class="compare-copy">
+        <h2 class="h-display">Find your<br>perfect fit</h2>
+        <p>Discover the best of both worlds — drag to compare the front and back of every print.</p>
+      </div>
+    </div>
+  </section>`;
+}
+
+function benefitsHTML(){
+  const items = [
+    ["M3 6h11v11H3z M14 10h4l3 3v4h-7z M7 19a2 2 0 100 4 2 2 0 000-4 M18 19a2 2 0 100 4 2 2 0 000-4","Free delivery","Get your Virox streetwear delivered with no extra shipping cost on eligible orders."],
+    ["M3 6h18v13H3z M3 10h18 M7 15h4","100% secure payment","Shop with confidence using secure, encrypted and trusted payment methods."],
+    ["M3 4h18v16H3z M7 8h10 M7 12h7 M7 16h5","Easy returns","Not the perfect fit? No worries. Return or exchange according to our return policy."],
+    ["M12 12m-9 0a9 9 0 1018 0 9 9 0 10-18 0 M12 10v6","24/7 support","Have questions? Our team is here to help whenever you need us."],
+  ];
+  return `
+  <section class="benefits wrap">
+    <div class="benefits__wrapper">
+      <div class="benefits__intro">
+        <span class="benefits__eyebrow">Why Virox?</span>
+        <h2 class="h-display">Why shop<br>with us?</h2>
+        <p>We've got you covered with hassle-free shopping, quality streetwear, and service that keeps you confident with every purchase.</p>
+      </div>
+      <div class="benefits__grid">
+        ${items.map(([path,title,desc])=>`
+          <div class="benefit">
+            <div class="benefit__icon"><svg viewBox="0 0 24 24"><path d="${path}"/></svg></div>
+            <div><h3>${title}</h3><p>${desc}</p></div>
+          </div>`).join("")}
+      </div>
+    </div>
+  </section>`;
+}
+
+function faqHTML(){
+  const faqs = [
+    ["What is the return policy?","Our goal is for every customer to be totally satisfied with their purchase. If this isn't the case, let us know and we'll do our best to work with you to make it right."],
+    ["Are any purchases final sale?","We are unable to accept returns on certain items. These will be carefully marked before purchase."],
+    ["When will I get my order?","We work quickly to ship your order as soon as possible. Once your order has shipped, you'll receive an email with tracking details. Delivery times vary by location."],
+    ["Where are your products manufactured?","Our products are printed on demand in India through our fulfillment partners, so every piece is made after you order it."],
+    ["How much does shipping cost?","Shipping is calculated based on your location and the items in your order — you'll always know the price before you check out."],
+  ];
+  return `
+  <section class="faq wrap">
+    <h2 class="h-display">Frequently asked questions</h2>
+    ${faqs.map(([q,a])=>`
+      <details class="faq-row">
+        <summary>${q}</summary>
+        <p>${a}</p>
+      </details>`).join("")}
+  </section>`;
 }
 
 function heroHTML(){
@@ -754,7 +969,7 @@ function productHTML(slug){
   <div class="page wrap">
     <div class="breadcrumb"><a href="#/shop">Shop</a> / ${p.name}</div>
     <div class="pdp">
-      <div class="pdp__gallery">${svgArt(p.art)}</div>
+      <div class="pdp__gallery">${mediaFor(p)}</div>
       <div>
         <span class="eyebrow" style="margin-bottom:10px;">${p.category}</span>
         <h1 class="h-display" style="font-size:34px;">${p.name}</h1>
@@ -793,7 +1008,7 @@ function cartHTML(){
     <div style="display:grid; gap:20px; max-width:640px;">
       ${state.cart.map(i=>`
         <div class="line-item">
-          <div class="line-item__img">${svgArt(i.art)}</div>
+          <div class="line-item__img">${mediaFor(i)}</div>
           <div class="line-item__info">
             <span class="name">${i.name}</span>
             <span class="size">Size ${i.size} · ₹${i.price}</span>
@@ -832,14 +1047,14 @@ function checkoutHTML(){
   <div class="page wrap">
     <h1 class="h-display" style="font-size:32px; margin-bottom:24px;">Checkout</h1>
     <form id="checkoutForm" style="display:grid; gap:14px; max-width:520px;">
-      <input required name="name" placeholder="Full name" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
-      <input required type="email" name="email" placeholder="Email" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
-      <input required name="phone" placeholder="Phone" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
-      <input required name="line1" placeholder="Address" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
+      <input required name="name" placeholder="Full name" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:'Barlow Semi Condensed';">
+      <input required type="email" name="email" placeholder="Email" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:'Barlow Semi Condensed';">
+      <input required name="phone" placeholder="Phone" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:'Barlow Semi Condensed';">
+      <input required name="line1" placeholder="Address" style="background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:'Barlow Semi Condensed';">
       <div style="display:flex; gap:14px;">
-        <input required name="city" placeholder="City" style="flex:1;background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
-        <input required name="state" placeholder="State" style="flex:1;background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
-        <input required name="pincode" placeholder="Pincode" style="width:120px;background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:Archivo;">
+        <input required name="city" placeholder="City" style="flex:1;background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:'Barlow Semi Condensed';">
+        <input required name="state" placeholder="State" style="flex:1;background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:'Barlow Semi Condensed';">
+        <input required name="pincode" placeholder="Pincode" style="width:120px;background:transparent;border:1px solid var(--line);padding:12px 14px;color:var(--bone);font-family:'Barlow Semi Condensed';">
       </div>
       <div class="subtotal-row" style="margin-top:8px;"><span>Total</span><span>₹${cartTotal()}</span></div>
       <button class="btn btn-primary btn-block" type="submit">Pay with Cashfree</button>
@@ -894,7 +1109,7 @@ function cartDrawerHTML(){
     <div class="side-drawer__body">
       ${state.cart.length ? state.cart.map(i=>`
         <div class="line-item">
-          <div class="line-item__img">${svgArt(i.art)}</div>
+          <div class="line-item__img">${mediaFor(i)}</div>
           <div class="line-item__info">
             <span class="name">${i.name}</span>
             <span class="size">Size ${i.size} · ₹${i.price}</span>
@@ -921,7 +1136,7 @@ function wishDrawerHTML(){
     <div class="side-drawer__body">
       ${state.wishlist.length ? state.wishlist.map(p=>`
         <div class="line-item">
-          <div class="line-item__img">${svgArt(p.art)}</div>
+          <div class="line-item__img">${mediaFor(p)}</div>
           <div class="line-item__info">
             <span class="name">${p.name}</span>
             <span class="size">₹${p.price}</span>
@@ -954,6 +1169,35 @@ function renderCartDrawer(){
 
 /* ---------- events ---------- */
 function bindEvents(){
+  const dropsTrack = document.getElementById("dropsTrack");
+  if(dropsTrack){
+    document.getElementById("dropsPrev")?.addEventListener("click", ()=> dropsTrack.scrollBy({left:-320, behavior:"smooth"}));
+    document.getElementById("dropsNext")?.addEventListener("click", ()=> dropsTrack.scrollBy({left:320, behavior:"smooth"}));
+  }
+
+  const compareSlider = document.getElementById("compareSlider");
+  if(compareSlider){
+    const handle = document.getElementById("compareHandle");
+    const afterImg = compareSlider.querySelector(".after");
+    let dragging = false;
+    const setPos = (clientX) => {
+      const rect = compareSlider.getBoundingClientRect();
+      let pct = ((clientX - rect.left) / rect.width) * 100;
+      pct = Math.max(0, Math.min(100, pct));
+      handle.style.left = pct + "%";
+      if(afterImg) afterImg.style.clipPath = `inset(0 0 0 ${pct}%)`;
+    };
+    const start = (e) => { dragging = true; setPos((e.touches?e.touches[0].clientX:e.clientX)); };
+    const move = (e) => { if(!dragging) return; setPos((e.touches?e.touches[0].clientX:e.clientX)); };
+    const end = () => { dragging = false; };
+    handle.addEventListener("mousedown", start);
+    compareSlider.addEventListener("mousedown", start);
+    window.addEventListener("mousemove", move);
+    window.addEventListener("mouseup", end);
+    compareSlider.addEventListener("touchstart", start, {passive:true});
+    window.addEventListener("touchmove", move, {passive:true});
+    window.addEventListener("touchend", end);
+  }
   document.getElementById("scrim").onclick = closeDrawers;
 
   document.querySelectorAll("[data-open]").forEach(btn=>{
